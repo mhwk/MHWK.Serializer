@@ -1,7 +1,7 @@
-using Shouldly;
 using Xunit;
+using Shouldly;
 
-namespace StructSerializer.Example.Test
+namespace MHWK.Serializer.Example.Test
 {
     public class PersonTest
     {

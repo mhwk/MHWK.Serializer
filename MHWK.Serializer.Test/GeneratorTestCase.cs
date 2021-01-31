@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Xunit;
 
-namespace StructSerializer.Test
+namespace MHWK.Serializer.Test
 {
     public abstract class GeneratorTestCase
     {
@@ -18,7 +18,7 @@ namespace StructSerializer.Test
             var inputCompilation = CreateCompilation($@"
 using System;
 
-namespace StructSerializer.Test
+namespace MHWK.Serializer.Test
 {{
     public static class Program
     {{

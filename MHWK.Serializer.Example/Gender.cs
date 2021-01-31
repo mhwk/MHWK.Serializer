@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StructSerializer.Example
+namespace MHWK.Serializer.Example
 {
     [Serializable]
     public enum Gender

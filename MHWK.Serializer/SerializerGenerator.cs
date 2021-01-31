@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
-namespace StructSerializer
+namespace MHWK.Serializer
 {
     [Generator]
     public sealed class SerializerGenerator : ISourceGenerator
@@ -71,7 +71,7 @@ namespace StructSerializer
                     var parameters = constructor.ParameterList.ChildNodes().OfType<ParameterSyntax>();
 
                     var generated = $@"
-using StructSerializer;
+using MHWK.Serializer;
 using System;
 using System.Text.Json;
 
@@ -162,7 +162,7 @@ namespace {ns}
                         .FirstOrDefault()?.Name.ToString() ?? throw new ArgumentException($"No namespace for {name}");
 
                     var generated = $@"
-using StructSerializer;
+using MHWK.Serializer;
 using System;
 using System.Text.Json;
 

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>MHWK.Serializer.Example</AssemblyName>
+        <RootNamespace>MHWK.Serializer.Example</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MHWK.Serializer\MHWK.Serializer.csproj" OutputItemType="Analyzer" />
+    </ItemGroup>
+
+</Project>

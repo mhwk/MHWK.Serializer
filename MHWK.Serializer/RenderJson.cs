@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace StructSerializer
+namespace MHWK.Serializer
 {
     internal sealed class RenderJson : IRender
     {

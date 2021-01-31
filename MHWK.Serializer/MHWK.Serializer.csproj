@@ -3,6 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>latest</LangVersion>
+        <AssemblyName>MHWK.Serializer</AssemblyName>
+        <RootNamespace>MHWK.Serializer</RootNamespace>
 <!--        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
 <!--        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>-->
     </PropertyGroup>

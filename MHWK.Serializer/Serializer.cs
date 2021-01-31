@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json;
 
-namespace StructSerializer
+namespace MHWK.Serializer
 {
     public abstract class Serializer<T>
     {

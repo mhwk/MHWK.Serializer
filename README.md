@@ -1,7 +1,6 @@
-﻿# StructSerializer
+﻿# MHWK.Serializer
 
 POC for deserializing readonly structs from json through code generation.
-
 
 ## Example
 

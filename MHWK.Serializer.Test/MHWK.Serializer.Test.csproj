@@ -3,6 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <IsPackable>false</IsPackable>
+        <AssemblyName>MHWK.Serializer.Test</AssemblyName>
+        <RootNamespace>MHWK.Serializer.Test</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\StructSerializer\StructSerializer.csproj" OutputItemType="Analyzer" />
+      <ProjectReference Include="..\MHWK.Serializer\MHWK.Serializer.csproj" />
     </ItemGroup>
 
 </Project>

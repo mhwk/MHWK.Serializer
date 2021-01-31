@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json;
 
-namespace StructSerializer.Example.Test
+namespace MHWK.Serializer.Example.Test
 {
     public sealed class ManualGenderSerializer : Serializer<Gender>
     {

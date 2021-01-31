@@ -1,14 +1,14 @@
 ﻿using Microsoft.CodeAnalysis;
 using Shouldly;
 
-namespace StructSerializer.Test
+namespace MHWK.Serializer.Test
 {
     public class SerializerGeneratorTest : GeneratorTestCase
     {
         public override ISourceGenerator Generator => new SerializerGenerator();
 
         public override string Source => @"
-namespace StructSerializer.Test
+namespace MHWK.Serializer.Test
 {
     [Serializable]
     public readonly struct Person

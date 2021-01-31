@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace StructSerializer
+namespace MHWK.Serializer
 {
     internal sealed class RenderJsonInt : IRender
     {

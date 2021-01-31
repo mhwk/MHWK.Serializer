@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer", "StructSerializer\StructSerializer.csproj", "{3FD6A922-3307-4A6C-974B-6FF8DA661C3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHWK.Serializer", "MHWK.Serializer\MHWK.Serializer.csproj", "{3FD6A922-3307-4A6C-974B-6FF8DA661C3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer.Test", "StructSerializer.Test\StructSerializer.Test.csproj", "{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHWK.Serializer.Test", "MHWK.Serializer.Test\MHWK.Serializer.Test.csproj", "{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer.Example", "StructSerializer.Example\StructSerializer.Example.csproj", "{98B22474-30F0-41EC-86F5-ED52ACF6A31E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHWK.Serializer.Example", "MHWK.Serializer.Example\MHWK.Serializer.Example.csproj", "{98B22474-30F0-41EC-86F5-ED52ACF6A31E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer.Example.Test", "StructSerializer.Example.Test\StructSerializer.Example.Test.csproj", "{4943D4A5-1149-4C2B-8061-E1FDD25FAB70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHWK.Serializer.Example.Test", "MHWK.Serializer.Example.Test\MHWK.Serializer.Example.Test.csproj", "{4943D4A5-1149-4C2B-8061-E1FDD25FAB70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

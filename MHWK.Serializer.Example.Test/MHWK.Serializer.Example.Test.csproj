@@ -4,6 +4,10 @@
         <TargetFramework>net5.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <AssemblyName>MHWK.Serializer.Example.Test</AssemblyName>
+
+        <RootNamespace>MHWK.Serializer.Example.Test</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,8 +25,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\StructSerializer.Example\StructSerializer.Example.csproj" />
-      <ProjectReference Include="..\StructSerializer\StructSerializer.csproj" />
+      <ProjectReference Include="..\MHWK.Serializer.Example\MHWK.Serializer.Example.csproj" />
+      <ProjectReference Include="..\MHWK.Serializer\MHWK.Serializer.csproj" />
     </ItemGroup>
 
 </Project>
