@@ -1,0 +1,16 @@
+﻿services:
+  - docker
+
+stages:
+  - name: test
+  - name: pack
+    if: type != pull_request AND branch = master
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - make test
+    - stage: pack
+      script:
+        - make pack
