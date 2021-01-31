@@ -5,7 +5,7 @@ namespace MHWK.Serializer.Test
 {
     public class SerializerGeneratorTest : GeneratorTestCase
     {
-        public override ISourceGenerator Generator => new SerializerGenerator();
+        public override ISourceGenerator Generator => new GenerateStructSerializers();
 
         public override string Source => @"
 namespace MHWK.Serializer.Test
