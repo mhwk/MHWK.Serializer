@@ -5,6 +5,9 @@ POC for deserializing readonly structs from json through code generation.
 ## Example
 
 ```c#
+using System;
+
+[Serializable]
 public readonly struct Foo {
     public readonly string Bar;
     
