@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer", "StructSerializer\StructSerializer.csproj", "{3FD6A922-3307-4A6C-974B-6FF8DA661C3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer.Test", "StructSerializer.Test\StructSerializer.Test.csproj", "{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FD6A922-3307-4A6C-974B-6FF8DA661C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD6A922-3307-4A6C-974B-6FF8DA661C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD6A922-3307-4A6C-974B-6FF8DA661C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD6A922-3307-4A6C-974B-6FF8DA661C3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
