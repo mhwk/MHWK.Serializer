@@ -10,7 +10,7 @@ namespace StructSerializer.Test
         private ManualPersonSerializer()
         {}
             
-        public override Person Deserialize(Utf8JsonReader reader)
+        public override Person Deserialize(ref Utf8JsonReader reader)
         {
             var name = default(string);
             var address = default(Address);

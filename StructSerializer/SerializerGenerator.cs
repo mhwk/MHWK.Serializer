@@ -9,11 +9,12 @@ using Microsoft.CodeAnalysis.Text;
 namespace StructSerializer
 {
     [Generator]
-    public class SerializerGenerator : ISourceGenerator
+    public sealed class SerializerGenerator : ISourceGenerator
     {
+        private static readonly IRender Render = new RenderJson();
+
         public void Initialize(GeneratorInitializationContext context)
         {
-
         }
 
         public void Execute(GeneratorExecutionContext context)
@@ -51,11 +52,12 @@ namespace StructSerializer
                         continue;
                     }
 
-                    var relatedClass = semanticModel.GetTypeInfo(nodes.Last().Parent);
                     var generatedClass = GenerateClass(declaredClass);
 
-                    context.AddSource($"{declaredClass.Identifier}Serializer",
-                        SourceText.From(generatedClass, Encoding.UTF8));
+                    context.AddSource(
+                        $"{declaredClass.Identifier}Serializer",
+                        SourceText.From(generatedClass, Encoding.UTF8)
+                    );
                 }
             }
         }
@@ -84,7 +86,7 @@ namespace {classNamespace}
         {{
         }}
 
-        public override {className} Deserialize(Utf8JsonReader reader) 
+        public override {className} Deserialize(ref Utf8JsonReader reader) 
         {{
             reader.Read();
             if (reader.TokenType != JsonTokenType.StartObject) throw new ArgumentException(""Expected start of object"");
@@ -98,44 +100,15 @@ namespace {classNamespace}
             {{
                 switch (reader.TokenType)
                 {{
-                    //default: throw new ArgumentException(""Unexpected json token"");
                     default: continue;
                     case JsonTokenType.EndObject: goto after;
                     case JsonTokenType.PropertyName:
-                        {string.Join("\n", parameters.Select(argument => {
-                            if (argument.Type.IsKind(SyntaxKind.PredefinedType) && "string" == argument.Type.ToString()) {
-                                return $@"
-                                    if (reader.GetString() == ""{argument.Identifier}"")
-                                    {{
-                                        reader.Read();
-                                        if (reader.TokenType != JsonTokenType.String) throw new ArgumentException(""Expected string for {argument.Identifier}"");
-                                        {argument.Identifier} = reader.GetString();
-                                    }}
-                                ";
-                            }
-
-                            if (argument.Type.IsKind(SyntaxKind.PredefinedType) && "int" == argument.Type.ToString()) {
-                                return $@"
-                                    if (reader.GetString() == ""{argument.Identifier}"")
-                                    {{
-                                        reader.Read();
-                                        if (reader.TokenType != JsonTokenType.Number) throw new ArgumentException(""Expected number for {argument.Identifier}"");
-                                        {argument.Identifier} = reader.GetInt32();
-                                    }}
-                                ";
-                            }
-                            
-                            if (argument.Type.IsKind(SyntaxKind.IdentifierName)) {
-                                return $@"
-                                    if (reader.GetString() == ""{argument.Identifier}"")
-                                    {{
-                                        {argument.Identifier} = {argument.Type}Serializer.Instance.Deserialize(reader);
-                                    }}
-                                ";
-                            }
-
-                            return "";
-                        }))}
+                        {string.Join(
+                "\n", parameters
+                    .Select(parameter => Render.Renders(parameter)
+                        ? Render.RenderDeserialization(parameter)
+                        : ""
+                    ))}
                         break;
                 }}
             }}

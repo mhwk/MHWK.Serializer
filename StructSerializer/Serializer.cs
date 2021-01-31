@@ -9,9 +9,9 @@ namespace StructSerializer
         public T Deserialize(string json)
         {
             var reader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
-            return Deserialize(reader);
+            return Deserialize(ref reader);
         }
         
-        public abstract T Deserialize(Utf8JsonReader reader);
+        public abstract T Deserialize(ref Utf8JsonReader reader);
     }
 }
