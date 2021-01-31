@@ -6,6 +6,7 @@ namespace MHWK.Serializer
     internal sealed class RenderJson : IRender
     {
         private static readonly IRender[] Renderers = {
+            new RenderJsonBool(),
             new RenderJsonInt(),
             new RenderJsonObject(),
             new RenderJsonString(),

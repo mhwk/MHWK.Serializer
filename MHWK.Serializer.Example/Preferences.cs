@@ -1,7 +1,15 @@
-﻿namespace MHWK.Serializer.Example
+﻿using System;
+
+namespace MHWK.Serializer.Example
 {
-    public struct Preferences
+    [Serializable]
+    public readonly struct Preferences
     {
-        
+        public readonly bool DarkMode;
+
+        public Preferences(bool darkMode)
+        {
+            DarkMode = darkMode;
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace MHWK.Serializer
                 if (reader.GetString() == ""{parameter.Identifier}"")
                 {{
                     {parameter.Identifier} = {parameter.Type}Serializer.Instance.Deserialize(ref reader);
+                    break;
                 }}";
         }
     }

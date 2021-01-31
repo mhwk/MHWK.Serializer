@@ -93,8 +93,11 @@ namespace {ns}
             {{
                 switch (reader.TokenType)
                 {{
-                    default: continue;
-                    case JsonTokenType.EndObject: goto after;
+                    default:
+                        break;
+                    case JsonTokenType.EndObject:
+                        goto after;
+                        break;
                     case JsonTokenType.PropertyName:
                         {string.Join(
                 "\n", parameters

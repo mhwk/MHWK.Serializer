@@ -2,7 +2,11 @@
 TRAVIS_BUILD_NUMBER ?= dev
 
 test:
-	
+	docker run --rm \
+	  -v $(shell pwd):/app \
+	  --workdir /app \
+	  --entrypoint dotnet \
+	  ${SDK_IMAGE} test
 .PHONY: test
 
 pack:
@@ -12,7 +16,7 @@ pack:
 	  --entrypoint dotnet \
 	  ${SDK_IMAGE} pack \
 	    -c Release \
-	    --version-suffix ${TRAVIS_BUILD_NUMBER} \
+	    --version-suffix alpha-${TRAVIS_BUILD_NUMBER} \
 	    --output /app/package
 
 	docker run --rm \

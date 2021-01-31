@@ -5,7 +5,8 @@
         <LangVersion>latest</LangVersion>
         <AssemblyName>MHWK.Serializer</AssemblyName>
         <RootNamespace>MHWK.Serializer</RootNamespace>
-<!--        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <VersionPrefix>0.1.0</VersionPrefix>
 <!--        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>-->
     </PropertyGroup>
 

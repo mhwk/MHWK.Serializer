@@ -40,6 +40,17 @@ namespace MHWK.Serializer.Test
             HouseNumber = houseNumber;
         }
     }
+
+    [Serializable]
+    public readonly struct Preferences
+    {
+        public readonly bool DarkMode;
+
+        public Preferences(bool darkMode)
+        {
+            DarkMode = darkMode;
+        }
+    }
 }";
 
         public override void Assert(GeneratorDriverRunResult result)

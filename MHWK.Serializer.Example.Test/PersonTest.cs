@@ -12,11 +12,14 @@ namespace MHWK.Serializer.Example.Test
 {
     ""name"": ""Purno"",
     ""gender"": ""Male"",
+    ""age"": 18,
     ""address"": {
         ""street"": ""FooBar Avenue"",
         ""houseNumber"": 666
     },
-    ""age"": 18
+    ""preferences"": {
+        ""darkMode"": true
+    }
 }
 ");
 
@@ -24,6 +27,7 @@ namespace MHWK.Serializer.Example.Test
             person.Gender.ShouldBe(Gender.Male);
             person.Address.Street.ShouldBe("FooBar Avenue");
             person.Address.HouseNumber.ShouldBe(666);
+            person.Preferences.DarkMode.ShouldBeTrue();
         }
     }
 }

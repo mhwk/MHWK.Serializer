@@ -19,6 +19,7 @@ namespace MHWK.Serializer
                     reader.Read();
                     if (reader.TokenType != JsonTokenType.String) throw new ArgumentException(""Expected string for {parameter.Identifier}"");
                     {parameter.Identifier} = reader.GetString();
+                    break;
                 }}";
         }
     }

@@ -10,12 +10,15 @@ namespace MHWK.Serializer.Example
         public readonly Gender Gender;
 
         public readonly Address Address;
+        
+        public readonly Preferences Preferences;
 
-        public Person(string name, Gender gender, Address address)
+        public Person(string name, Gender gender, Address address, Preferences preferences)
         {
             Name = name;
             Gender = gender;
             Address = address;
+            Preferences = preferences;
         }
     }
 }
