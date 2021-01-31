@@ -19,6 +19,12 @@ namespace StructSerializer
 
         public void Execute(GeneratorExecutionContext context)
         {
+            GenerateStructSerializers(context);
+            GenerateEnumSerializers(context);
+        }
+
+        private void GenerateStructSerializers(GeneratorExecutionContext context)
+        {
             var attributeSymbol = context.Compilation.GetTypeByMetadataName(typeof(SerializableAttribute).FullName);
 
             var classWithAttributes = context.Compilation.SyntaxTrees
@@ -29,19 +35,19 @@ namespace StructSerializer
 
             foreach (SyntaxTree tree in classWithAttributes)
             {
-                var semanticModel = context.Compilation.GetSemanticModel(tree);
+                var model = context.Compilation.GetSemanticModel(tree);
 
-                foreach (var declaredClass in tree
+                foreach (var @struct in tree
                     .GetRoot()
                     .DescendantNodes()
                     .OfType<StructDeclarationSyntax>()
                     .Where(cd => cd.DescendantNodes().OfType<AttributeSyntax>().Any()))
                 {
-                    var nodes = declaredClass
+                    var nodes = @struct
                         .DescendantNodes()
                         .OfType<AttributeSyntax>()
                         .FirstOrDefault(a => a.DescendantTokens().Any(dt =>
-                            dt.IsKind(SyntaxKind.IdentifierToken) && semanticModel.GetTypeInfo(dt.Parent).Type.Name ==
+                            dt.IsKind(SyntaxKind.IdentifierToken) && model.GetTypeInfo(dt.Parent).Type.Name ==
                             attributeSymbol.Name))
                         ?.DescendantTokens()
                         ?.Where(dt => dt.IsKind(SyntaxKind.IdentifierToken))
@@ -52,41 +58,34 @@ namespace StructSerializer
                         continue;
                     }
 
-                    var generatedClass = GenerateClass(declaredClass);
+                    var name = @struct.Identifier.ToString();
+                    var ns = @struct
+                        .Ancestors()
+                        .OfType<NamespaceDeclarationSyntax>()
+                        .FirstOrDefault()?.Name.ToString() ?? throw new ArgumentException($"No namespace for {name}");
+                    var constructor = @struct
+                        .ChildNodes()
+                        .OfType<ConstructorDeclarationSyntax>()
+                        .OrderByDescending(c => c.ParameterList.ChildNodes().Count())
+                        .FirstOrDefault() ?? throw new ArgumentException($"No constructor for {name}");
+                    var parameters = constructor.ParameterList.ChildNodes().OfType<ParameterSyntax>();
 
-                    context.AddSource(
-                        $"{declaredClass.Identifier}Serializer",
-                        SourceText.From(generatedClass, Encoding.UTF8)
-                    );
-                }
-            }
-        }
-
-        private string GenerateClass(StructDeclarationSyntax @struct)
-        {
-            var className = @struct.Identifier.ToString();
-            var classNamespace = @struct.Ancestors().OfType<NamespaceDeclarationSyntax>().First().Name.ToString();
-            var constructor = @struct.ChildNodes().OfType<ConstructorDeclarationSyntax>()
-                .OrderByDescending(constructor => constructor.ParameterList.ChildNodes().Count())
-                .FirstOrDefault() ?? throw new ArgumentException($"No constructor for {className}");
-            var parameters = constructor.ParameterList.ChildNodes().OfType<ParameterSyntax>();
-
-            return $@"
+                    var generated = $@"
 using StructSerializer;
 using System;
 using System.Text.Json;
 
-namespace {classNamespace}
+namespace {ns}
 {{
-    public sealed class {className}Serializer : Serializer<{className}>
+    public sealed class {name}Serializer : Serializer<{name}>
     {{
-        public static readonly {className}Serializer Instance = new {className}Serializer();
+        public static readonly {name}Serializer Instance = new {name}Serializer();
 
-        private {className}Serializer()
+        private {name}Serializer()
         {{
         }}
 
-        public override {className} Deserialize(ref Utf8JsonReader reader) 
+        public override {name} Deserialize(ref Utf8JsonReader reader) 
         {{
             reader.Read();
             if (reader.TokenType != JsonTokenType.StartObject) throw new ArgumentException(""Expected start of object"");
@@ -115,13 +114,85 @@ namespace {classNamespace}
 
             after:
 
-            return new {className}(
+            return new {name}(
                 {string.Join(", ", parameters.Select(parameter => parameter.Identifier.ToString()))}
             );
         }}
     }}
 }}
 ";
+            
+                    context.AddSource(
+                        $"{@struct.Identifier}Serializer",
+                        SourceText.From(generated, Encoding.UTF8)
+                    );
+                }
+            }
+        }
+
+        private void GenerateEnumSerializers(GeneratorExecutionContext context)
+        {
+            var attributeSymbol = context.Compilation.GetTypeByMetadataName(typeof(SerializableAttribute).FullName);
+
+            foreach (SyntaxTree tree in context.Compilation.SyntaxTrees)
+            {
+                var model = context.Compilation.GetSemanticModel(tree);
+
+                foreach (var @enum in tree
+                    .GetRoot()
+                    .DescendantNodes()
+                    .OfType<EnumDeclarationSyntax>())
+                {
+                    if (!@enum
+                        .DescendantNodes()
+                        .OfType<AttributeSyntax>()
+                        .FirstOrDefault(a => a.DescendantTokens().Any(dt =>
+                            dt.IsKind(SyntaxKind.IdentifierToken) && model.GetTypeInfo(dt.Parent).Type.Name ==
+                            attributeSymbol.Name))
+                        ?.DescendantTokens()
+                        ?.Any(dt => dt.IsKind(SyntaxKind.IdentifierToken)) ?? false)
+                    {
+                        continue;
+                    }
+                    
+                    var name = @enum.Identifier.ToString();
+                    var ns = @enum
+                        .Ancestors()
+                        .OfType<NamespaceDeclarationSyntax>()
+                        .FirstOrDefault()?.Name.ToString() ?? throw new ArgumentException($"No namespace for {name}");
+
+                    var generated = $@"
+using StructSerializer;
+using System;
+using System.Text.Json;
+
+namespace {ns}
+{{
+    public sealed class {name}Serializer : Serializer<{name}>
+    {{
+        public static readonly {name}Serializer Instance = new {name}Serializer();
+
+        private {name}Serializer()
+        {{
+        }}
+
+        public override {name} Deserialize(ref Utf8JsonReader reader) 
+        {{
+            reader.Read();
+            
+            if (reader.TokenType != JsonTokenType.String) throw new ArgumentException($""Expected string for enum {{typeof({name}).FullName}}"");
+
+            return ({name}) Enum.Parse(typeof({name}), reader.GetString(), true);
+        }}
+    }}
+}}";
+                    
+                    context.AddSource(
+                        $"{@enum.Identifier}Serializer",
+                        SourceText.From(generated, Encoding.UTF8)
+                    );
+                }
+            }
         }
     }
 }

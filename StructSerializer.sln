@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer", "StructS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer.Test", "StructSerializer.Test\StructSerializer.Test.csproj", "{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer.Example", "StructSerializer.Example\StructSerializer.Example.csproj", "{98B22474-30F0-41EC-86F5-ED52ACF6A31E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructSerializer.Example.Test", "StructSerializer.Example.Test\StructSerializer.Example.Test.csproj", "{4943D4A5-1149-4C2B-8061-E1FDD25FAB70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD96D3EB-A010-40B0-A8D7-C1BA0367F31D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B22474-30F0-41EC-86F5-ED52ACF6A31E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B22474-30F0-41EC-86F5-ED52ACF6A31E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B22474-30F0-41EC-86F5-ED52ACF6A31E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B22474-30F0-41EC-86F5-ED52ACF6A31E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4943D4A5-1149-4C2B-8061-E1FDD25FAB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4943D4A5-1149-4C2B-8061-E1FDD25FAB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4943D4A5-1149-4C2B-8061-E1FDD25FAB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4943D4A5-1149-4C2B-8061-E1FDD25FAB70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

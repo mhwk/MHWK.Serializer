@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StructSerializer.Test
+namespace StructSerializer.Example
 {
     [Serializable]
     public readonly struct Address

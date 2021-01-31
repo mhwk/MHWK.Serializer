@@ -1,7 +1,7 @@
 using Shouldly;
 using Xunit;
 
-namespace StructSerializer.Test
+namespace StructSerializer.Example.Test
 {
     public class PersonTest
     {
@@ -11,6 +11,7 @@ namespace StructSerializer.Test
             var person = PersonSerializer.Instance.Deserialize(@"
 {
     ""name"": ""Purno"",
+    ""gender"": ""Male"",
     ""address"": {
         ""street"": ""FooBar Avenue"",
         ""houseNumber"": 666
@@ -20,6 +21,7 @@ namespace StructSerializer.Test
 ");
 
             person.Name.ShouldBe("Purno");
+            person.Gender.ShouldBe(Gender.Male);
             person.Address.Street.ShouldBe("FooBar Avenue");
             person.Address.HouseNumber.ShouldBe(666);
         }
