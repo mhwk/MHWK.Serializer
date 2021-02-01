@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Text.Json;
 
 namespace MHWK.Serializer
@@ -7,7 +8,12 @@ namespace MHWK.Serializer
     {
         public T Deserialize(string json)
         {
-            var reader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
+            return Deserialize(Encoding.UTF8.GetBytes(json));
+        }
+        
+        public T Deserialize(ReadOnlySpan<byte> json)
+        {
+            var reader = new Utf8JsonReader(json);
             return Deserialize(ref reader);
         }
         

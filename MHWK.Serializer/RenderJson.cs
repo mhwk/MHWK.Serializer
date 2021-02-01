@@ -7,6 +7,8 @@ namespace MHWK.Serializer
     {
         private static readonly IRender[] Renderers = {
             new RenderJsonBool(),
+            new RenderJsonDouble(),
+            new RenderJsonFloat(),
             new RenderJsonInt(),
             new RenderJsonObject(),
             new RenderJsonString(),

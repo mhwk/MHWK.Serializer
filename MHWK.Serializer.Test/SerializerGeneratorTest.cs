@@ -46,9 +46,15 @@ namespace MHWK.Serializer.Test
     {
         public readonly bool DarkMode;
 
-        public Preferences(bool darkMode)
+        public readonly double Brightness;
+
+        public readonly float Volume;
+
+        public Preferences(bool darkMode, double brightness, float volume)
         {
             DarkMode = darkMode;
+            Brightness = brightness;
+            Volume = volume;
         }
     }
 }";

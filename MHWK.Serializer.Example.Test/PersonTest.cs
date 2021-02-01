@@ -1,5 +1,5 @@
-using Xunit;
 using Shouldly;
+using Xunit;
 
 namespace MHWK.Serializer.Example.Test
 {
@@ -18,7 +18,9 @@ namespace MHWK.Serializer.Example.Test
         ""houseNumber"": 666
     },
     ""preferences"": {
-        ""darkMode"": true
+        ""darkMode"": true,
+        ""brightness"": 0.4,
+        ""volume"": 0.8
     }
 }
 ");
@@ -28,6 +30,8 @@ namespace MHWK.Serializer.Example.Test
             person.Address.Street.ShouldBe("FooBar Avenue");
             person.Address.HouseNumber.ShouldBe(666);
             person.Preferences.DarkMode.ShouldBeTrue();
+            person.Preferences.Brightness.ShouldBe(.4);
+            person.Preferences.Volume.ShouldBe(.8f);
         }
     }
 }

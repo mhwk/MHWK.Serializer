@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace MHWK.Serializer
 {
     [Generator]
-    public class GenerateEnumSerializers : ISourceGenerator
+    internal class GenerateEnumSerializers : ISourceGenerator
     {
         private static readonly IRender Render = new RenderJson();
 

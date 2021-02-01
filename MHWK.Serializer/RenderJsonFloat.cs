@@ -4,12 +4,12 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace MHWK.Serializer
 {
-    internal sealed class RenderJsonBool : IRender
+    internal sealed class RenderJsonFloat : IRender
     {
         public bool Renders(ParameterSyntax parameter)
         {
             return parameter.Type.IsKind(SyntaxKind.PredefinedType)
-                   && "bool" == parameter.Type.ToString();
+                   && "float" == parameter.Type.ToString();
         }
 
         public string RenderDeserialization(ParameterSyntax parameter)
@@ -18,8 +18,8 @@ namespace MHWK.Serializer
                 if (reader.GetString() == ""{parameter.Identifier}"")
                 {{
                     reader.Read();
-                    if (reader.TokenType != JsonTokenType.True && reader.TokenType != JsonTokenType.False) throw new ArgumentException(""Expected boolean for {parameter.Identifier}"");
-                    {parameter.Identifier} = reader.GetBoolean();
+                    if (reader.TokenType != JsonTokenType.Number) throw new ArgumentException(""Expected number for {parameter.Identifier}"");
+                    {parameter.Identifier} = reader.GetSingle();
                     break;
                 }}";
         }

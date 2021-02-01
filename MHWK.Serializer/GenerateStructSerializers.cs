@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace MHWK.Serializer
 {
     [Generator]
-    public sealed class GenerateStructSerializers : ISourceGenerator
+    internal sealed class GenerateStructSerializers : ISourceGenerator
     {
         private static readonly IRender Render = new RenderJson();
 
