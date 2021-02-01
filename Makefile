@@ -14,17 +14,24 @@ pack:
 	  -v $(shell pwd):/app \
 	  --workdir /app \
 	  --entrypoint dotnet \
+	  ${SDK_IMAGE} build \
+	    -c Release
+	
+	docker run --rm \
+	  -v $(shell pwd):/app \
+	  --workdir /app \
+	  --entrypoint dotnet \
 	  ${SDK_IMAGE} pack \
 	    -c Release \
-	    --version-suffix alpha-${TRAVIS_BUILD_NUMBER} \
+	    --version-suffix build-${TRAVIS_BUILD_NUMBER} \
 	    --output /app/package
-
+ 
 	docker run --rm \
 	  -v $(shell pwd):/app \
 	  --workdir /app \
 	  --entrypoint dotnet \
 	  ${SDK_IMAGE} nuget push \
-	    /app/package/MHWK.Serializer.1.*.nupkg \
+	    /app/package/MHWK.Serializer.0.*.nupkg \
 	    --api-key ${NUGET_KEY} \
 	    -s https://www.nuget.org/api/v2/package
 .PHONY: pack
